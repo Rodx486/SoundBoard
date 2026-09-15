@@ -1,0 +1,80 @@
+{
+    "order": [
+        "04 - Livin On A Prayer.mp3",
+        "02 - Call Me Mayabe - edit1.mp3",
+        "03 - Gorilaz - instrumental.mp3",
+        "05 - Memory Reboot - edit1.mp3",
+        "14 - Zombi - 04.wav",
+        "11 - Zombi - 02.mp3",
+        "13 - Zombi - 03.wav",
+        "15 - MONTAGEM TALVEZ.mp3",
+        "06 - Pare de chorar.mp3",
+        "07 - Seneca Falls_instrumental.mp3",
+        "08 - Sunday Morning(instrumental).mp3",
+        "10 - Zombi  -  01.mp3",
+        "17 - Coringa risada.mp3",
+        "01 - Apanhar e ficar calado.mp3",
+        "12 - Memory Reboot - edit2.mp3",
+        "16 - MONTAGEM TALVEZ.wav",
+        "09 - We Are the Champios.mp3"
+    ],
+    "items": {
+        "01 - Apanhar e ficar calado.mp3": {
+            "color": "#00ff00",
+            "image": "images/13aefad28a4440058cc889e79e9e1ba3.jpeg"
+        },
+        "02 - Call Me Mayabe - edit1.mp3": {
+            "color": "#ff00ff"
+        },
+        "17 - Coringa risada.mp3": {
+            "image": "images/7723c35228d14709b8491af331c38d7a.jpeg",
+            "color": "#00ff00"
+        },
+        "14 - Zombi - 04.wav": {
+            "image": "images/5c2aeeb5a5784a1ea981f0f9b5cf2342.jpeg",
+            "color": "#00ff00"
+        },
+        "04 - Livin On A Prayer.mp3": {
+            "color": "#ff00ff"
+        },
+        "06 - Pare de chorar.mp3": {
+            "color": "#ff00ff"
+        },
+        "07 - Seneca Falls_instrumental.mp3": {
+            "color": "#ff00ff"
+        },
+        "12 - Memory Reboot - edit2.mp3": {
+            "color": "#ff00ff"
+        },
+        "15 - MONTAGEM TALVEZ.mp3": {
+            "color": "#ff00ff"
+        },
+        "16 - MONTAGEM TALVEZ.wav": {
+            "color": "#ff00ff"
+        },
+        "08 - Sunday Morning(instrumental).mp3": {
+            "color": "#ff00ff"
+        },
+        "03 - Gorilaz - instrumental.mp3": {
+            "color": "#ff00ff"
+        },
+        "05 - Memory Reboot - edit1.mp3": {
+            "color": "#ff00ff"
+        },
+        "09 - We Are the Champios.mp3": {
+            "color": "#ff00ff"
+        },
+        "13 - Zombi - 03.wav": {
+            "color": "#00ff00",
+            "image": "images/cafabd3fdc5843fbbe5746ae4280333a.jpeg"
+        },
+        "10 - Zombi  -  01.mp3": {
+            "color": "#00ff00",
+            "image": "images/a492f71d0183464399d5a5d3eb4dba52.jpeg"
+        },
+        "11 - Zombi - 02.mp3": {
+            "color": "#00ff00",
+            "image": "images/2eacfb53f7d04c64ad1d967fedf48fed.jpeg"
+        }
+    }
+}

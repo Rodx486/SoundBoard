@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stream Deck Virtual</title>
+    <link rel="stylesheet" href="style.css?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blob"></div>
+    <div class="background-blob blob-2"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>Soundboard</h1>
+                    <p>Controle de Efeitos Sonoros</p>
+                </div>
+                <button id="edit-mode-btn" class="edit-btn" title="Editar Cores">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <input type="color" id="color-picker" style="display: none;">
+
+        <div id="sound-grid" class="grid">
+            <!-- Os botões serão carregados aqui via JavaScript -->
+        </div>
+
+        <div id="empty-state" class="empty-state" style="display: none;">
+            Nenhum som encontrado na pasta "sounds".<br>Adicione arquivos .mp3 ou .wav!
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Editar <span id="modal-filename">Som</span></h3>
+            <p>Escolha o que deseja fazer com este botão.</p>
+            
+            <div class="modal-actions">
+                <button id="modal-color-btn" class="modal-btn">🎨 Mudar Cor</button>
+                <button id="modal-image-btn" class="modal-btn">🖼️ Escolher Imagem</button>
+                <button id="modal-remove-image-btn" class="modal-btn" style="display: none;">❌ Remover Imagem</button>
+            </div>
+            
+            <button id="modal-close-btn" class="modal-btn secondary">Fechar</button>
+        </div>
+    </div>
+    
+    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="script.js?v=5"></script>
+</body>
+</html>

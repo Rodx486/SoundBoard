@@ -1,0 +1,297 @@
+:root {
+    --bg-color: #0b0c10;
+    --text-primary: #ffffff;
+    --text-secondary: #8c92a6;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-color: #4facfe;
+    --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --stop-color: #ff4757;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 15px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.background-blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    top: -200px;
+    left: -200px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.background-blob.blob-2 {
+    background: radial-gradient(circle, rgba(254, 79, 172, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    top: auto;
+    bottom: -200px;
+    left: auto;
+    right: -200px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    z-index: 1;
+}
+
+header {
+    margin-bottom: 25px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.edit-btn.active {
+    background: rgba(79, 172, 254, 0.2);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.3);
+}
+
+body.edit-mode .sound-btn {
+    border-style: dashed;
+    border-color: var(--glass-border);
+    cursor: cell;
+}
+body.edit-mode .sound-btn:hover {
+    border-color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.sound-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 15px 10px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    aspect-ratio: 1 / 1;
+    word-break: break-word;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.sound-btn span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 0.75rem;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.sound-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(79, 172, 254, 0.2);
+    border-color: rgba(79, 172, 254, 0.3);
+}
+
+/* Estado Normal: Pressionando (se não estiver tocando) */
+.sound-btn:active:not(.playing) {
+    transform: translateY(2px) scale(0.95);
+    background-color: rgba(79, 172, 254, 0.15);
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+    border-color: var(--accent-color);
+}
+
+/* ----------------------------------------------------
+   ESTADO: TOCANDO (PLAYING)
+   Animação de brilho e borda colorida para indicar que está tocando
+------------------------------------------------------- */
+@keyframes playingPulse {
+    0% { box-shadow: 0 0 10px rgba(255, 71, 87, 0.4), inset 0 0 20px rgba(255, 71, 87, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(255, 71, 87, 0.9), inset 0 0 40px rgba(255, 71, 87, 0.6); border-color: rgba(255, 71, 87, 1); }
+    100% { box-shadow: 0 0 10px rgba(255, 71, 87, 0.4), inset 0 0 20px rgba(255, 71, 87, 0.4); }
+}
+
+.sound-btn.playing {
+    background-color: rgba(255, 71, 87, 0.15);
+    border-color: var(--stop-color);
+    transform: translateY(2px) scale(0.97); /* Fica afundado visualmente */
+    animation: playingPulse 1.5s infinite;
+}
+
+.sound-btn.playing span {
+    color: var(--stop-color); /* Muda a cor do texto para indicar também */
+}
+
+/* Estado de ativo ao tentar Parar (clique no botão já tocando) */
+.sound-btn.playing:active {
+    transform: translateY(4px) scale(0.95);
+    box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 71, 87, 0.5);
+    background-color: rgba(255, 71, 87, 0.25);
+    animation: none;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    background: var(--glass-bg);
+    border: 1px dashed var(--glass-border);
+    border-radius: 24px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.modal-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 15px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-btn.secondary {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+}
+
+.modal-btn.secondary:hover {
+    color: var(--text-primary);
+    background: transparent;
+}
